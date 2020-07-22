@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <string>
-#include <utility>
 #include <vector>
 #include <memory>
 
@@ -14,8 +13,8 @@ private:
     std::string name_;
     std::string profession_;
 public:
-    Human(std::string name, std::string profession)
-            : name_(std::move(name)), profession_(std::move(profession)) {}
+    Human(const std::string &name, const std::string &profession)
+            : name_(name), profession_(profession) {}
 
     std::string GetName() const { return name_; }
 
@@ -37,18 +36,20 @@ public:
 
     // Переопределённый метод Walk для класса Student.
     void Walk(const std::string &destination) const override {
-        std::cout << "Student: " << GetName() << " walks to: " << destination
+        std::cout << GetProfession() << ": " << GetName() << " walks to: "
+                  << destination
                   << std::endl;
         SingSong();
     }
 
     // Методы Learn() и SingSong() - уникальны, есть только у студента.
     void Learn() const {
-        std::cout << "Student: " << GetName() << " learns" << std::endl;
+        std::cout << GetProfession() << ": " << GetName() << " learns"
+                  << std::endl;
     }
 
     void SingSong() const {
-        std::cout << "Student: " << GetName() << " sings a song: "
+        std::cout << GetProfession() << ": " << GetName() << " sings a song: "
                   << favoriteSong_ << std::endl;
     }
 };
@@ -64,13 +65,15 @@ public:
 
     // Переопределённый метод Walk для класса Teacher.
     void Walk(const std::string &destination) const override {
-        std::cout << "Teacher: " << GetName() << " walks to: " << destination
+        std::cout << GetProfession() << ": " << GetName() << " walks to: "
+                  << destination
                   << std::endl;
     }
 
     // Метод Teach() - уникальный метод, который есть только у учителя.
     void Teach() const {
-        std::cout << "Teacher: " << GetName() << " teaches: " << subject_
+        std::cout << GetProfession() << ": " << GetName() << " teaches: "
+                  << subject_
                   << std::endl;
     }
 };
@@ -84,14 +87,15 @@ public:
     void Check(Human &h) const {
         std::string prof = h.GetProfession();
 
-        std::cout << "Policeman: " << GetName()
+        std::cout << GetProfession() << ": " << GetName()
                   << " checks " << h.GetProfession() << ". "
                   << h.GetProfession() << "'s name is: "
                   << h.GetName() << std::endl;
     }
 
     void Walk(const std::string &destination) const override {
-        std::cout << "Policeman: " << GetName() << " walks to: " << destination
+        std::cout << GetProfession() << ": " << GetName() << " walks to: "
+                  << destination
                   << std::endl;
     }
 };
