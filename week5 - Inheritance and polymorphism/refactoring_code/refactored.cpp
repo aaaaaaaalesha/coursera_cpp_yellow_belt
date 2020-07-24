@@ -84,7 +84,7 @@ class Policeman : public Human {
 public:
     explicit Policeman(const std::string &name) : Human(name, "Policeman") {}
 
-    void Check(Human &h) const {
+    void Check(const Human &h) const {
         std::string prof = h.GetProfession();
 
         std::cout << GetProfession() << ": " << GetName()
