@@ -16,6 +16,8 @@ public:
     Human(const std::string &name, const std::string &profession)
             : name_(name), profession_(profession) {}
 
+    virtual ~Human() = default;
+
     std::string GetName() const { return name_; }
 
     std::string GetProfession() const { return profession_; }
